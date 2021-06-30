@@ -186,24 +186,24 @@ The basic unit of operation for Git/GitHub is the *repository*. Repositories are
 
 ## How to use GitHub
 
-Step 1: In order to start using GitHub, you must first create a repository. *Create an empty public repository.*
+*Step 1: In order to start using GitHub, you must first create a repository.*
 
 * Within GitHub Desktop --> File --> New repository
 * This new repository will be visible in your file manager in the GitHub folder. In Windows this is usually in My Documents, in Linux its wherever you chose to put it during the installation process, and I don't have a Mac so I don't know where the GitHub folder lives on that platform :(
 
-Step 2: Add code to your repository.
+*Step 2: Add code to your repository.*
 
 * Add any code to your repository.
 
-Step 3. Commit changes. 
+*Step 3. Commit changes.*
 
 * Git/GitHub does not track every single keystroke you make, rather you write some new code/change your code and once you're done for the day or have reached a point of completion you "commit" all of these changes to the repository. Committing changes effectively tell GitHub "hey this code is new and supersedes what you have stored on your servers". In the process of committing changes, Git/GitHub automatically determines what has been changed and how the relevant files changed. In addition, you must add a commit summary - this is a small little not to your future self explaining what changes have been made making it easier to rever your code if need be.
 
-Step 4. Push changes.
+*Step 4. Push changes.*
 
 * Committing changes only stores the changes locally on your devices. In order for these changes to be put online to GitHub.com you must "push" these changes to the cloud.
 
-Step 5. Repeat steps 2 through 4 for any changes to files you put into your repository.
+*Step 5. Repeat steps 2 through 4 for any changes to files you put into your repository.*
 
 * Now you know how to use Git/GitHub. Use these tool to keep your code safe and free from accidental breaks!
 
