@@ -37,8 +37,8 @@ additionResult <- x + y
 ```
 
 1. Change `x` assignment symbol to <-
-2. Change `y` assignment symbol to <-
-3. `additionResult` should be changed to `addition_result`
+2. 
+3. 
 
 ### Moderate - 6 mistakes, some multiples per line
 
@@ -49,12 +49,12 @@ average_x = mean( x, na.rm=TRUE )
 average_y = mean(y )
 ```
 
-1. Change `average_x` assignment symbol to <-
-2. Change `average_y` assignment symbol to <-
-3. Fix parantheses for `mean( x, na.rm = TRUE )` to `mean(x, na.rm = TRUE)`
-4. Add spacing between `na.rm=TRUE` argument in `mean( x, na.rm=TRUE )`
-5. Fix parantheses for `mean(y )` to `mean(y)`
-6. Explicity call `na.rm = TRUE` in `mean(y )`
+1. 
+2. 
+3. 
+4. 
+5. 
+6. 
 
 ### Difficult - 4 mistakes
 
@@ -68,10 +68,16 @@ if(length(x)){
 }
 ```
 
-1. Add space before bracket in `if` statement
-2. Add space before bracket in `else` statment
-3. Use " instead of ' for quoting text
-4. Conditional statement is based on implicit type coercion
+1. 
+2. 
+3. 
+4. 
+
+### Tip: code linting
+
+RStudio and the R package `lintr` work nicely together to automatically analyze your code to make sure that you are following the tidyverse style guide. I would *highly* recommend using `lintr`, as you are much less likely to make mistakes and stick to the style guide. README for setting up:
+
+https://cran.r-project.org/web/packages/lintr/readme/README.html
 
 # Commenting Code
 

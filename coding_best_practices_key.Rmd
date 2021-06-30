@@ -1,0 +1,212 @@
+---
+title: "Code Commenting Practice"
+output:
+  html_document:
+    theme: cosmo
+    highlight: tango
+    toc: true
+    toc_float: true
+author: David Fastovich
+
+---
+
+A critical part of right code that is readable, extensible, and maintainable code *requires* well commented and styled code. This is a learned skill that requires practice which is what we'll be doing today! When I started graduate school I had 0 coding experience and consequently, the code and project for my Masters' thesis was unnecessarily complicated, hard to maintian, and *very* hard to debug. This RMarkdwon file is meant to teach anyone the fundamentals of writing good code, regardless of experience level so even if you've never written a line of code, there is useful information here! In fact, I wish I had learned these principles before I learned to code because they would have saved me quite a few headaches.
+
+# Styling Code
+
+The first step to writing readable code is to follow a style guide! Different coding languages have their own official and unofficial style guides. Unlike other coding languages R does not have a formal and agreed upon style or variable naming conventions. Fortunately, individuals and companies have come up with their own style guide for R, and today we'll be working with the [tidyverse style guide](https://style.tidyverse.org/), which is written by Hadley Wickham and supported by RStudio. 
+
+For posterity, here are some style guides for other coding languages:
+
+* Python: https://www.python.org/dev/peps/pep-0008/
+* Java: https://google.github.io/styleguide/javaguide.html
+* CSSL: https://google.github.io/styleguide/htmlcssguide.html
+* MATLAB: https://www.mathworks.com/matlabcentral/fileexchange/46056-matlab-style-guidelines-2-0
+* Julia: https://docs.julialang.org/en/v1/manual/style-guide/
+
+## Exercise 1. Identify what's wrong with this code.
+
+Using the [tidyverse style guide](https://style.tidyverse.org/) fill out the numbered list below for style mistakes made in this code.
+
+### Beginner - 3 mistakes, one in each line
+
+```{r, eval=FALSE}
+x = 5
+y = 7
+additionResult <- x + y
+```
+
+1. Change `x` assignment symbol to <-
+2. Change `y` assignment symbol to <-
+3. `additionResult` should be changed to `addition_result`
+
+### Moderate - 6 mistakes, some multiples per line
+
+```{r, eval=FALSE}
+x <- seq_len(10)
+y <- seq_len(15)
+average_x = mean( x, na.rm=TRUE )
+average_y = mean(y )
+```
+
+1. Change `average_x` assignment symbol to <-
+2. Change `average_y` assignment symbol to <-
+3. Fix parentheses for `mean( x, na.rm = TRUE )` to `mean(x, na.rm = TRUE)`
+4. Add spacing between `na.rm=TRUE` argument in `mean( x, na.rm=TRUE )`
+5. Fix parentheses for `mean(y )` to `mean(y)`
+6. Explicity call `na.rm = TRUE` in `mean(y )`
+
+### Difficult - 4 mistakes
+
+```{r, eval=FALSE}
+x <- seq_len(10)
+
+if(length(x)){
+  plot(x)
+} else{
+  'X has no length'
+}
+```
+
+1. Add space before bracket in `if` statement
+2. Add space before bracket in `else` statement
+3. Use " instead of ' for quoting text
+4. Conditional statement is based on implicit type coercion
+
+### Tip: code linting
+
+RStudio and the R package `lintr` work nicely together to automatically analyze your code to make sure that you are following the tidyverse style guide. I would *highly* recommend using `lintr`, as you are much less likely to make mistakes and stick to the style guide. README for setting up:
+
+https://cran.r-project.org/web/packages/lintr/readme/README.html
+
+# Commenting Code
+
+Commenting code is a critical part of writing code that is maintainable and readable. While comments are not necessary to make a script or chunk of code work, they enable you, or someone else, to open a script you've written and understand the 1) purpose of the code and 2) how the code works. There are different ways to comment code - in-line comments, header comments, and function comments. Each of these types of code are designed to make individual portions of code, entire scripts, or functions understandable with minimal effort. Although it is entirely possible to over-comment code, I've become overly cautious and assume I'll be returning to any code I've written assuming I've forgotten everything about it. This becomes critical when it comes to debugging code that you've written months earlier.
+
+## Exercise 2. Comment the code below to make it more readable
+
+
+### In-Line Comments
+
+Let's practice in-line commenting! Below is a series of operations - comment the code to make this readable to anyone, but be careful not to over-comment, as this can make the code more difficult to read. (Important note: this code is nonsense, but I wrote this following some normal R workflows. That is, filter data, perform a statistical test of some sort, plot some results)
+
+```{r, eval=FALSE}
+# Load the data
+data("mtcars")
+
+# Comment the code below using in-line comments --------------------------------
+
+library(ggplot2)
+carb_2 <- mtcars[mtcars$carb == 2, ]
+carb_4 <- mtcars[mtcars$carb == 4, ]
+t.test(carb_2$mpg, carb_4$mpg, alternative = "two.sided")
+pairs(mtcars)
+mpg_lm <- lm(mtcars$mpg ~ mtcars$hp)
+print(mpg_lm)
+plot(mpg_lm)
+
+# Extra credit: interpret the linear regression
+# 
+# The linear regression tells us that as as you increase a cars horsepower, the miles per gallon with _______.
+```
+
+### Header Comments
+
+Write a header comment describing what this code chunk does.
+
+```{r, eval=FALSE}
+
+# Write header here
+
+data("AirPassengers")
+fltr <- c(1/2, rep(1, times = 11), 1/2)/12 # filter to remove seasonal effect
+passenger_trend <- stats::filter(AirPassengers, filter = fltr, method = "convo", 
+    sides = 2) # apply filter
+plot.ts(passenger_trend, ylab = "Trend", cex = 1) # plot trend
+
+# Estimate seasonal effect
+passenger_seasonal <- AirPassengers - passenger_trend
+plot.ts(passenger_seasonal)
+
+# Plot and save plts
+par(mfrow = c(2, 1))
+plot.ts(passenger_trend, ylab = "Trend", cex = 1)
+plot.ts(passenger_seasonal)
+png("Air_Passenger_decomposition.png")
+dev.off()
+```
+
+### Function Comments
+
+The goal of writing functions is to reduce how often you have to rewrite code. A well written function can be used for many different purposes, but this requires functions that are well commented. The tidyverse R style guide includes documention for how to comment a function, and a minimum the comments should include 1) what the function does, 2) how to use the function, 3) the arguments, 4) the data type/structure of the arguments, 5) output values, and 6) example code. Using the tidyverse 
+
+```{r, eval=FALSE}
+#' TITLE OF FUNCTION HERE
+#'
+#' @description
+#' WRITE DESCRIPTION HERE
+#' 
+#' @param PARAMETER 1 HERE (DATA TYPE AND STRUCTURE)
+#' @paramP PARAMETER 2 HERE (DATA TYPE AND STRUCTURE)
+#' 
+#' @details
+#' WRITE THE SPECIFICS OF HOW THIS FUNCTION OPERATES HERE
+#' 
+#' @return
+#' WRITE WHAT THE FUNCTION RETURNS HERE
+#' 
+#' @examples
+#' WRITE EXAMPLES OF HOW TO USE THE CODE HERE
+#' 
+
+add_two <- function(x, y) {
+  x + y
+}
+
+add_two(x = 1, y = 2)
+```
+
+# GitHub and Git
+
+*What is version tracking?*
+
+Version tracking is an important part of coding. Here, any changes you make to your code are noted and stored so you can go back in time and undo any changes that may have broken your code. Instead of tracking every keystroke, version tracking manages different versions of your code allowing you to compare what has changed.
+
+*How is version tracking done?*
+
+Version tracking is accomplished using the program Git. Git is a program that manages different versions of code changes, while GitHub is a company that stores your code and all changes you've ever made to your code in the cloud (think of it like Google Drive for code) and the backend of GitHub is the Git program. Why use Git or GitHub? Well GitHub is a private company, so you're trusting your propriety code on their servers, however code can be kept private. In exchange, your code is stored in the cloud and accessible from any device while being able to use a sleek program instead of terminal commands. In contrast, Git manages all changes *locally* and within the terminal/command prompt/powershell. So you give up convenience in exchange for privacy. Which solution do I use? GitHub! The convenience of being able to code on any device is well worth the minimal privacy concerns.
+
+*Why version track?*
+
+Have you ever update your code to make it run faster, work better, or simply to fix a bug and then the code stopped working? Well Git/GitHub keeps track of these changes so it's very easy to find when the code stopped working and determine which changes broke the code. Think of it like an always on Track Changes for Word.
+
+*How does Git/GitHub work?*
+
+The basic unit of operation for Git/GitHub is the *repository*. Repositories are akin to folders on your computer - its a single location for a single project where you can put code, figures, notes, etc. and any changes to these files will be tracked. The easiest way to manage these repositories and any code changes is by using [GitHub Desktop](https://desktop.github.com/) which is available on all computer platforms.  
+
+## How to use GitHub
+
+Step 1: In order to start using GitHub, you must first create a repository. *Create an empty public repository.*
+
+* Within GitHub Desktop --> File --> New repository
+* This new repository will be visible in your file manager in the GitHub folder. In Windows this is usually in My Documents, in Linux its wherever you chose to put it during the installation process, and I don't have a Mac so I don't know where the GitHub folder lives on that platform :(
+
+Step 2: Add code to your repository.
+
+* Add any code to your repository.
+
+Step 3. Commit changes. 
+
+* Git/GitHub does not track every single keystroke you make, rather you write some new code/change your code and once you're done for the day or have reached a point of completion you "commit" all of these changes to the repository. Committing changes effectively tell GitHub "hey this code is new and supersedes what you have stored on your servers". In the process of committing changes, Git/GitHub automatically determines what has been changed and how the relevant files changed. In addition, you must add a commit summary - this is a small little not to your future self explaining what changes have been made making it easier to rever your code if need be.
+
+Step 4. Push changes.
+
+* Committing changes only stores the changes locally on your devices. In order for these changes to be put online to GitHub.com you must "push" these changes to the cloud.
+
+Step 5. Repeat steps 2 through 4 for any changes to files you put into your repository.
+
+* Now you know how to use Git/GitHub. Use these tool to keep your code safe and free from accidental breaks!
+
+## Exercise 3. Create your first repository.
+
+Using the steps above, create a repository on GitHub.com titled "myFirstRepo", copy this script into the repository, push the files to GitHub.com, change the file locally, commit these changes, and push these changes to GitHub.com. Once complete, show your neighbor that you completed the exercise and that you can see the changes made to the repository.
