@@ -168,42 +168,42 @@ add_two(x = 1, y = 2)
 
 # GitHub and Git
 
-*What is version tracking?*
+**What is version tracking?**
 
 Version tracking is an important part of coding. Here, any changes you make to your code are noted and stored so you can go back in time and undo any changes that may have broken your code. Instead of tracking every keystroke, version tracking manages different versions of your code allowing you to compare what has changed.
 
-*How is version tracking done?*
+**How is version tracking done?**
 
 Version tracking is accomplished using the program Git. Git is a program that manages different versions of code changes, while GitHub is a company that stores your code and all changes you've ever made to your code in the cloud (think of it like Google Drive for code) and the backend of GitHub is the Git program. Why use Git or GitHub? Well GitHub is a private company, so you're trusting your propriety code on their servers, however code can be kept private. In exchange, your code is stored in the cloud and accessible from any device while being able to use a sleek program instead of terminal commands. In contrast, Git manages all changes *locally* and within the terminal/command prompt/powershell. So you give up convenience in exchange for privacy. Which solution do I use? GitHub! The convenience of being able to code on any device is well worth the minimal privacy concerns.
 
-*Why version track?*
+**Why version track?**
 
 Have you ever update your code to make it run faster, work better, or simply to fix a bug and then the code stopped working? Well Git/GitHub keeps track of these changes so it's very easy to find when the code stopped working and determine which changes broke the code. Think of it like an always on Track Changes for Word.
 
-*How does Git/GitHub work?*
+**How does Git/GitHub work?**
 
 The basic unit of operation for Git/GitHub is the *repository*. Repositories are akin to folders on your computer - its a single location for a single project where you can put code, figures, notes, etc. and any changes to these files will be tracked. The easiest way to manage these repositories and any code changes is by using [GitHub Desktop](https://desktop.github.com/) which is available on all computer platforms.  
 
 ## How to use GitHub
 
-*Step 1: In order to start using GitHub, you must first create a repository.*
+**Step 1: In order to start using GitHub, you must first create a repository.**
 
 * Within GitHub Desktop --> File --> New repository
 * This new repository will be visible in your file manager in the GitHub folder. In Windows this is usually in My Documents, in Linux its wherever you chose to put it during the installation process, and I don't have a Mac so I don't know where the GitHub folder lives on that platform :(
 
-*Step 2: Add code to your repository.*
+**Step 2: Add code to your repository.**
 
 * Add any code to your repository.
 
-*Step 3. Commit changes.*
+**Step 3. Commit changes.**
 
 * Git/GitHub does not track every single keystroke you make, rather you write some new code/change your code and once you're done for the day or have reached a point of completion you "commit" all of these changes to the repository. Committing changes effectively tell GitHub "hey this code is new and supersedes what you have stored on your servers". In the process of committing changes, Git/GitHub automatically determines what has been changed and how the relevant files changed. In addition, you must add a commit summary - this is a small little not to your future self explaining what changes have been made making it easier to rever your code if need be.
 
-*Step 4. Push changes.*
+**Step 4. Push changes.**
 
 * Committing changes only stores the changes locally on your devices. In order for these changes to be put online to GitHub.com you must "push" these changes to the cloud.
 
-*Step 5. Repeat steps 2 through 4 for any changes to files you put into your repository.*
+**Step 5. Repeat steps 2 through 4 for any changes to files you put into your repository.**
 
 * Now you know how to use Git/GitHub. Use these tool to keep your code safe and free from accidental breaks!
 
