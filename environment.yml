@@ -5,3 +5,4 @@ dependencies:
   - r-base
   - r-tidyverse
   - r-lintr
+  - r-styler

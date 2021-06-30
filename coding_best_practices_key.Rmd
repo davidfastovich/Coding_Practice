@@ -73,9 +73,21 @@ if(length(x)){
 3. Use " instead of ' for quoting text
 4. Conditional statement is based on implicit type coercion
 
-### Tip: code linting
+### Tip: code linting and automatic styling
 
-RStudio and the R package `lintr` work nicely together to automatically analyze your code to make sure that you are following the tidyverse style guide. I would *highly* recommend using `lintr`, as you are much less likely to make mistakes and stick to the style guide. README for setting up:
+RStudio and the R package `styler` work nicely together to automatically analyze your code to make sure that you are following the tidyverse style guide. I would *highly* recommend using `styler`, as you are much less likely to make mistakes and stick to the style guide. 
+
+https://styler.r-lib.org/
+
+`styler` is installed in this Binder environment and works within this section of RStudio, so give it a try! Write some incorrectly styled code below, then go to Addins --> style active region.
+
+```{r, eval=FALSE}
+
+# WRITE CODE HERE
+
+```
+
+`lintr` is another great tool which checks an R file for adherence to the tidyverse style guide. This is also installed, so feel free creat your own file, save it using RStudio and type in `lint("THE_NAME_OF_THE_FILE_YOU_MADE.r")`. README for setting up:
 
 https://cran.r-project.org/web/packages/lintr/readme/README.html
 

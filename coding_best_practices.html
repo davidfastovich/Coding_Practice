@@ -1664,9 +1664,13 @@ div.tocify {
 <li></li>
 </ol>
 </div>
-<div id="tip-code-linting" class="section level3">
-<h3>Tip: code linting</h3>
-<p>RStudio and the R package <code>lintr</code> work nicely together to automatically analyze your code to make sure that you are following the tidyverse style guide. I would <em>highly</em> recommend using <code>lintr</code>, as you are much less likely to make mistakes and stick to the style guide. README for setting up:</p>
+<div id="tip-code-linting-and-automatic-styling" class="section level3">
+<h3>Tip: code linting and automatic styling</h3>
+<p>RStudio and the R package <code>styler</code> work nicely together to automatically analyze your code to make sure that you are following the tidyverse style guide. I would <em>highly</em> recommend using <code>styler</code>, as you are much less likely to make mistakes and stick to the style guide.</p>
+<p><a href="https://styler.r-lib.org/" class="uri">https://styler.r-lib.org/</a></p>
+<p><code>styler</code> is installed in this Binder environment and works within this section of RStudio, so give it a try! Write some incorrectly styled code below, then go to Addins –&gt; style active region.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># WRITE </span><span class="al">TEST</span><span class="co"> CODE HERE</span></span></code></pre></div>
+<p><code>lintr</code> is another great tool which checks an R file for adherence to the tidyverse style guide. This is also installed, so feel free creat your own file, save it using RStudio and type in <code>lint(&quot;THE_NAME_OF_THE_FILE_YOU_MADE.r&quot;)</code>. README for setting up:</p>
 <p><a href="https://cran.r-project.org/web/packages/lintr/readme/README.html" class="uri">https://cran.r-project.org/web/packages/lintr/readme/README.html</a></p>
 </div>
 </div>
@@ -1679,72 +1683,72 @@ div.tocify {
 <div id="in-line-comments" class="section level3">
 <h3>In-Line Comments</h3>
 <p>Let’s practice in-line commenting! Below is a series of operations - comment the code to make this readable to anyone, but be careful not to over-comment, as this can make the code more difficult to read. (Important note: this code is nonsense, but I wrote this following some normal R workflows. That is, filter data, perform a statistical test of some sort, plot some results)</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Load the data</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">data</span>(<span class="st">&quot;mtcars&quot;</span>)</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># Comment the code below using in-line comments --------------------------------</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb4-7"><a href="#cb4-7"></a>carb_<span class="dv">2</span> &lt;-<span class="st"> </span>mtcars[mtcars<span class="op">$</span>carb <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, ]</span>
-<span id="cb4-8"><a href="#cb4-8"></a>carb_<span class="dv">4</span> &lt;-<span class="st"> </span>mtcars[mtcars<span class="op">$</span>carb <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, ]</span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="kw">t.test</span>(carb_<span class="dv">2</span><span class="op">$</span>mpg, carb_<span class="dv">4</span><span class="op">$</span>mpg, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="kw">pairs</span>(mtcars)</span>
-<span id="cb4-11"><a href="#cb4-11"></a>mpg_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(mtcars<span class="op">$</span>mpg <span class="op">~</span><span class="st"> </span>mtcars<span class="op">$</span>hp)</span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="kw">print</span>(mpg_lm)</span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="kw">plot</span>(mpg_lm)</span>
-<span id="cb4-14"><a href="#cb4-14"></a></span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="co"># Extra credit: interpret the linear regression</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="co"># </span></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="co"># The linear regression tells us that as as you increase a cars horsepower, the miles per gallon with _______.</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Load the data</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">data</span>(<span class="st">&quot;mtcars&quot;</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># Comment the code below using in-line comments --------------------------------</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb5-7"><a href="#cb5-7"></a>carb_<span class="dv">2</span> &lt;-<span class="st"> </span>mtcars[mtcars<span class="op">$</span>carb <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, ]</span>
+<span id="cb5-8"><a href="#cb5-8"></a>carb_<span class="dv">4</span> &lt;-<span class="st"> </span>mtcars[mtcars<span class="op">$</span>carb <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, ]</span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="kw">t.test</span>(carb_<span class="dv">2</span><span class="op">$</span>mpg, carb_<span class="dv">4</span><span class="op">$</span>mpg, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="kw">pairs</span>(mtcars)</span>
+<span id="cb5-11"><a href="#cb5-11"></a>mpg_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(mtcars<span class="op">$</span>mpg <span class="op">~</span><span class="st"> </span>mtcars<span class="op">$</span>hp)</span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="kw">print</span>(mpg_lm)</span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="kw">plot</span>(mpg_lm)</span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co"># Extra credit: interpret the linear regression</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co"># </span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co"># The linear regression tells us that as as you increase a cars horsepower, the miles per gallon with _______.</span></span></code></pre></div>
 </div>
 <div id="header-comments" class="section level3">
 <h3>Header Comments</h3>
 <p>Write a header comment describing what this code chunk does.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Write header here</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="kw">data</span>(<span class="st">&quot;AirPassengers&quot;</span>)</span>
-<span id="cb5-4"><a href="#cb5-4"></a>fltr &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dt">times =</span> <span class="dv">11</span>), <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">12</span> <span class="co"># filter to remove seasonal effect</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>passenger_trend &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw">filter</span>(AirPassengers, <span class="dt">filter =</span> fltr, <span class="dt">method =</span> <span class="st">&quot;convo&quot;</span>, </span>
-<span id="cb5-6"><a href="#cb5-6"></a>    <span class="dt">sides =</span> <span class="dv">2</span>) <span class="co"># apply filter</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="kw">plot.ts</span>(passenger_trend, <span class="dt">ylab =</span> <span class="st">&quot;Trend&quot;</span>, <span class="dt">cex =</span> <span class="dv">1</span>) <span class="co"># plot trend</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co"># Estimate seasonal effect</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>passenger_seasonal &lt;-<span class="st"> </span>AirPassengers <span class="op">-</span><span class="st"> </span>passenger_trend</span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="kw">plot.ts</span>(passenger_seasonal)</span>
-<span id="cb5-12"><a href="#cb5-12"></a></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co"># Plot and save plts</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="kw">plot.ts</span>(passenger_trend, <span class="dt">ylab =</span> <span class="st">&quot;Trend&quot;</span>, <span class="dt">cex =</span> <span class="dv">1</span>)</span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="kw">plot.ts</span>(passenger_seasonal)</span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="kw">png</span>(<span class="st">&quot;Air_Passenger_decomposition.png&quot;</span>)</span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="kw">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Write header here</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="kw">data</span>(<span class="st">&quot;AirPassengers&quot;</span>)</span>
+<span id="cb6-4"><a href="#cb6-4"></a>fltr &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dt">times =</span> <span class="dv">11</span>), <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">12</span> <span class="co"># filter to remove seasonal effect</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>passenger_trend &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw">filter</span>(AirPassengers, <span class="dt">filter =</span> fltr, <span class="dt">method =</span> <span class="st">&quot;convo&quot;</span>, </span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="dt">sides =</span> <span class="dv">2</span>) <span class="co"># apply filter</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="kw">plot.ts</span>(passenger_trend, <span class="dt">ylab =</span> <span class="st">&quot;Trend&quot;</span>, <span class="dt">cex =</span> <span class="dv">1</span>) <span class="co"># plot trend</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co"># Estimate seasonal effect</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>passenger_seasonal &lt;-<span class="st"> </span>AirPassengers <span class="op">-</span><span class="st"> </span>passenger_trend</span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="kw">plot.ts</span>(passenger_seasonal)</span>
+<span id="cb6-12"><a href="#cb6-12"></a></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co"># Plot and save plts</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="kw">plot.ts</span>(passenger_trend, <span class="dt">ylab =</span> <span class="st">&quot;Trend&quot;</span>, <span class="dt">cex =</span> <span class="dv">1</span>)</span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="kw">plot.ts</span>(passenger_seasonal)</span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="kw">png</span>(<span class="st">&quot;Air_Passenger_decomposition.png&quot;</span>)</span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="kw">dev.off</span>()</span></code></pre></div>
 </div>
 <div id="function-comments" class="section level3">
 <h3>Function Comments</h3>
 <p>The goal of writing functions is to reduce how often you have to rewrite code. A well written function can be used for many different purposes, but this requires functions that are well commented. The tidyverse R style guide includes documention for how to comment a function, and a minimum the comments should include 1) what the function does, 2) how to use the function, 3) the arguments, 4) the data type/structure of the arguments, 5) output values, and 6) example code. Using the tidyverse</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#&#39; TITLE OF FUNCTION HERE</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#&#39;</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#&#39; @description</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&#39; WRITE DESCRIPTION HERE</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&#39; </span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&#39; @param PARAMETER 1 HERE (DATA TYPE AND STRUCTURE)</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&#39; @paramP PARAMETER 2 HERE (DATA TYPE AND STRUCTURE)</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&#39; </span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&#39; @details</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&#39; WRITE THE SPECIFICS OF HOW THIS FUNCTION OPERATES HERE</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&#39; </span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&#39; @return</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&#39; WRITE WHAT THE FUNCTION RETURNS HERE</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&#39; </span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&#39; @examples</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&#39; WRITE EXAMPLES OF HOW TO USE THE CODE HERE</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&#39; </span></span>
-<span id="cb6-18"><a href="#cb6-18"></a></span>
-<span id="cb6-19"><a href="#cb6-19"></a>add_two &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</span>
-<span id="cb6-20"><a href="#cb6-20"></a>  x <span class="op">+</span><span class="st"> </span>y</span>
-<span id="cb6-21"><a href="#cb6-21"></a>}</span>
-<span id="cb6-22"><a href="#cb6-22"></a></span>
-<span id="cb6-23"><a href="#cb6-23"></a><span class="kw">add_two</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#&#39; TITLE OF FUNCTION HERE</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&#39;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&#39; @description</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&#39; WRITE DESCRIPTION HERE</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&#39; </span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&#39; @param PARAMETER 1 HERE (DATA TYPE AND STRUCTURE)</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&#39; @paramP PARAMETER 2 HERE (DATA TYPE AND STRUCTURE)</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&#39; </span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&#39; @details</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&#39; WRITE THE SPECIFICS OF HOW THIS FUNCTION OPERATES HERE</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&#39; </span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&#39; @return</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&#39; WRITE WHAT THE FUNCTION RETURNS HERE</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&#39; </span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&#39; @examples</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&#39; WRITE EXAMPLES OF HOW TO USE THE CODE HERE</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="co">#&#39; </span></span>
+<span id="cb7-18"><a href="#cb7-18"></a></span>
+<span id="cb7-19"><a href="#cb7-19"></a>add_two &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</span>
+<span id="cb7-20"><a href="#cb7-20"></a>  x <span class="op">+</span><span class="st"> </span>y</span>
+<span id="cb7-21"><a href="#cb7-21"></a>}</span>
+<span id="cb7-22"><a href="#cb7-22"></a></span>
+<span id="cb7-23"><a href="#cb7-23"></a><span class="kw">add_two</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="dv">2</span>)</span></code></pre></div>
 </div>
 </div>
 </div>
